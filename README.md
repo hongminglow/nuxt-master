@@ -112,3 +112,19 @@ A simple dashboard application built with Nuxt 3, featuring authentication and a
 - In production, replace the mock auth with a real authentication system
 - The application follows Nuxt 3 conventions and best practices
 - All components are properly typed with TypeScript
+
+## Dev JWT session (jose)
+
+This demo now issues an HttpOnly JWT cookie using `jose`:
+
+- POST `/api/login` with `{ email: "admin@example.com", password: "password" }`
+- GET `/api/session` to inspect the current session
+- POST `/api/logout` to clear the cookie
+
+Set a signing secret (dev example):
+
+```sh
+NUXT_JWT_SECRET="dev-super-secret" pnpm dev
+```
+
+Cookie is HttpOnly, SameSite=Lax, Secure in production, and the token expires in 1 hour.
